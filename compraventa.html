@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akuun Arquitectos - Compraventa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #343a40;
+            --secondary-color: #f8f9fa;
+            --accent-color: #ffc107;
+            --text-color: #212529;
+            --text-light: #f8f9fa;
+            --transition-speed: 0.3s;
+        }
+        
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            padding-top: 70px;
+            scroll-behavior: smooth;
+        }
+        
+        /* Header Styles */
+        .hero-header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        /* Service Header */
+        .service-header {
+            background-color: var(--secondary-color);
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+            background-image: linear-gradient(to right, rgba(248, 249, 250, 0.9), rgba(248, 249, 250, 0.9)), 
+                              url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        /* Card Styles */
+        .feature-card {
+            height: 100%;
+            transition: all var(--transition-speed) ease;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-card .card-body {
+            padding: 2rem;
+        }
+        
+        .feature-card i {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform var(--transition-speed);
+        }
+        
+        .feature-card:hover i {
+            transform: scale(1.2);
+        }
+        
+        /* Button Styles */
+        .btn-outline-primary {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transition: all var(--transition-speed);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            border-color: var(--accent-color);
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+        
+        footer a {
+            color: var(--accent-color);
+            transition: color var(--transition-speed);
+        }
+        
+        footer a:hover {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        
+        /* Back Link */
+        .back-link {
+            margin-top: 3rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .service-header {
+                padding: 2rem 0;
+            }
+            
+            .feature-card {
+                margin-bottom: 1.5rem;
+            }
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Navbar Enhancements */
+        .navbar {
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(52, 58, 64, 0.95) !important;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-link {
+            position: relative;
+            margin: 0 0.5rem;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width var(--transition-speed);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand me-auto d-flex align-items-center" href="/index.html#inicio">
+                <img src="/Imagenes/Logo 2.png" alt="logo" width="100px" class="me-2">
+                <span class="fs-1 fw-bold">
+                    <span class="text-warning">Akuun</span>
+                    <span class="text-dark">Arquitectos</span>
+                </span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active fs-3" href="/index.html#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-3" href="/index.html#nosotros">Nosotros</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fs-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Servicios
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item fs-4" href="/diseño.html">Diseño Arquitectónico</a></li>
+                            <li><a class="dropdown-item fs-4" href="/compraventa.html">CompraVenta</a></li>
+                            <li><a class="dropdown-item fs-4" href="/renta.html">Renta de Maquinaria</a></li>
+                            <li><a class="dropdown-item fs-4" href="/topografia.html">Topografía</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-3" href="/index.html#portafolio">Portafolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-3" href="/index.html#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Service Header -->
+    <div class="service-header">
+        <div class="container text-center fade-in">
+            <h2 class="display-4 fw-bold">Compraventa de propiedades</h2>
+            <p class="lead">Soluciones integrales para tus transacciones inmobiliarias</p>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h3 class="mb-4 text-center fade-in">Nuestros servicios de compraventa</h3>
+                <p class="text-center mb-5 fade-in">Ofrecemos asesoramiento profesional en la compra y venta de todo tipo de propiedades, garantizando transacciones seguras y transparentes con el respaldo de nuestro equipo multidisciplinario.</p>
+                
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card feature-card shadow-sm fade-in" style="animation-delay: 0.2s;">
+                            <div class="card-body text-center">
+                                <i class="bi bi-file-earmark-text-fill fs-1 mb-3"></i>
+                                <h4 class="card-title">Asesoría legal</h4>
+                                <p class="card-text">Revisión de documentos, contratos y trámites legales para garantizar la seguridad de tu inversión.</p>
+                                <button class="btn btn-sm btn-outline-primary mt-2" onclick="showMoreInfo('legal')">Más información</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card feature-card shadow-sm fade-in" style="animation-delay: 0.4s;">
+                            <div class="card-body text-center">
+                                <i class="bi bi-graph-up-fill fs-1 mb-3"></i>
+                                <h4 class="card-title">Valuaciones profesionales</h4>
+                                <p class="card-text">Determinación del valor real de la propiedad mediante análisis de mercado y características físicas.</p>
+                                <button class="btn btn-sm btn-outline-primary mt-2" onclick="showMoreInfo('valuaciones')">Más información</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card feature-card shadow-sm fade-in" style="animation-delay: 0.6s;">
+                            <div class="card-body text-center">
+                                <i class="bi bi-cash-stack fs-1 mb-3"></i>
+                                <h4 class="card-title">Gestión financiera</h4>
+                                <p class="card-text">Opciones de financiamiento y conexión con instituciones bancarias para facilitar tu operación.</p>
+                                <button class="btn btn-sm btn-outline-primary mt-2" onclick="showMoreInfo('financiera')">Más información</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional Info Section (hidden by default) -->
+                <div id="additional-info" class="mt-5 p-4 rounded-3" style="display: none; background-color: var(--secondary-color);">
+                    <button class="btn btn-close float-end" onclick="hideAdditionalInfo()"></button>
+                    <div id="info-content"></div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="row mt-5 fade-in">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="card shadow-sm">
+                            <div class="card-body p-4">
+                                <h3 class="text-center mb-4">¿Interesado en nuestros servicios?</h3>
+                                <form id="contactForm" onsubmit="submitForm(event)">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="name" class="form-label">Nombre completo</label>
+                                            <input type="text" class="form-control" id="name" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="email" class="form-label">Correo electrónico</label>
+                                            <input type="email" class="form-control" id="email" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="phone" class="form-label">Teléfono</label>
+                                            <input type="tel" class="form-control" id="phone">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="service" class="form-label">Servicio de interés</label>
+                                            <select class="form-select" id="service">
+                                                <option value="Asesoría legal">Asesoría legal</option>
+                                                <option value="Valuaciones profesionales">Valuaciones profesionales</option>
+                                                <option value="Gestión financiera">Gestión financiera</option>
+                                                <option value="Otro">Otro</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="message" class="form-label">Mensaje</label>
+                                            <textarea class="form-control" id="message" rows="4" required></textarea>
+                                        </div>
+                                        <div class="col-12 text-center">
+                                            <button type="submit" class="btn btn-primary px-4">Enviar consulta</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="/index.html" class="btn btn-outline-primary back-link d-block mx-auto fade-in" style="max-width: 200px;">
+                    <i class="bi bi-arrow-left"></i> Volver a principal
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="/Imagenes/Logo 2.png" alt="logo" width="100" class="me-3">
+                        <div>
+                            <h3 class="h5 mb-0">Akuun Arquitectos</h3>
+                            <p class="small mb-0">Transformando ideas en espacios únicos</p>
+                        </div>
+                    </div>
+                    <p class="small">© 2025 Akuun Arquitectos. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="h5 mb-3">Enlaces rápidos</h4>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="/index.html" class="text-white text-decoration-none">Inicio</a></li>
+                        <li class="mb-2"><a href="#nosotros" class="text-white text-decoration-none">Nosotros</a></li>
+                        <li class="mb-2"><a href="#servicios" class="text-white text-decoration-none">Servicios</a></li>
+                        <li class="mb-2"><a href="#portafolio" class="text-white text-decoration-none">Portafolio</a></li>
+                        <li><a href="#contacto" class="text-white text-decoration-none">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="h5 mb-3">Contacto</h4>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><i class="bi bi-geo-alt-fill me-2"></i>Calle Pelícano #44, Yahualica, Jalisco</li>
+                        <li class="mb-2"><i class="bi bi-telephone-fill me-2"></i>+52 449 224 19 60</li>
+                        <li><i class="bi bi-envelope-fill me-2"></i>arq.marcolizardi@gmail.com</li>
+                    </ul>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-linkedin fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-whatsapp fs-5"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Show more info function
+        function showMoreInfo(type) {
+            const infoSection = document.getElementById('additional-info');
+            const infoContent = document.getElementById('info-content');
+            
+            let content = '';
+            let title = '';
+            
+            switch(type) {
+                case 'legal':
+                    title = 'Asesoría Legal';
+                    content = `
+                        <h4>${title}</h4>
+                        <p>Nuestro servicio de asesoría legal incluye:</p>
+                        <ul>
+                            <li>Revisión exhaustiva de documentos de propiedad</li>
+                            <li>Elaboración y revisión de contratos de compraventa</li>
+                            <li>Asesoramiento en trámites notariales y registrales</li>
+                            <li>Verificación de cargas y gravámenes sobre la propiedad</li>
+                            <li>Asesoría en aspectos fiscales de la transacción</li>
+                        </ul>
+                        <p>Garantizamos que todas las transacciones cumplan con los requisitos legales necesarios para proteger tu inversión.</p>
+                    `;
+                    break;
+                    
+                case 'valuaciones':
+                    title = 'Valuaciones Profesionales';
+                    content = `
+                        <h4>${title}</h4>
+                        <p>Nuestro proceso de valuación incluye:</p>
+                        <ul>
+                            <li>Análisis comparativo de mercado (CMA)</li>
+                            <li>Evaluación de las características físicas de la propiedad</li>
+                            <li>Consideración de ubicación y entorno</li>
+                            <li>Análisis de plusvalía y potencial de apreciación</li>
+                            <li>Informe detallado con metodología aplicada</li>
+                        </ul>
+                        <p>Nuestros valuadores están certificados y utilizan metodologías reconocidas internacionalmente.</p>
+                    `;
+                    break;
+                    
+                case 'financiera':
+                    title = 'Gestión Financiera';
+                    content = `
+                        <h4>${title}</h4>
+                        <p>Te ayudamos con:</p>
+                        <ul>
+                            <li>Análisis de capacidad crediticia</li>
+                            <li>Conexión con instituciones financieras</li>
+                            <li>Comparación de opciones de financiamiento</li>
+                            <li>Asesoría en créditos hipotecarios</li>
+                            <li>Estructuración de planes de pago</li>
+                        </ul>
+                        <p>Contamos con alianzas estratégicas con las principales instituciones bancarias para ofrecerte las mejores condiciones.</p>
+                    `;
+                    break;
+            }
+            
+            infoContent.innerHTML = content;
+            infoSection.style.display = 'block';
+            
+            // Scroll to the additional info section
+            infoSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function hideAdditionalInfo() {
+            document.getElementById('additional-info').style.display = 'none';
+        }
+        
+        // Form submission handler
+        function submitForm(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send the data to a server
+            // For this example, we'll just show an alert
+            alert(`Gracias ${name} por tu consulta sobre ${service}. Nos pondremos en contacto contigo pronto.`);
+            
+            // Reset the form
+            document.getElementById('contactForm').reset();
+            
+            // You could add AJAX here to actually submit the form to a server
+            // Example:
+            /*
+            fetch('/submit-form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    service: service,
+                    message: message
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
+                document.getElementById('contactForm').reset();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Hubo un error al enviar tu mensaje. Por favor inténtalo de nuevo más tarde.');
+            });
+            */
+        }
+        
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transition = 'opacity 0.6s ease';
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

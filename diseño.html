@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akuun Arquitectos - Diseño Arquitectónico</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #1a252f;
+            --transition-time: 0.4s;
+        }
+        
+        /* Estilos generales */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            padding-top: 70px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        a {
+            text-decoration: none;
+            transition: color var(--transition-time) ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #c0392b;
+            border-color: #c0392b;
+        }
+        
+        .btn-outline-primary {
+            color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        /* Navbar */
+        .navbar {
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar.scrolled {
+            background-color: white !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-brand span {
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled .navbar-brand span.text-dark {
+            color: var(--primary-color) !important;
+        }
+        
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 1rem;
+            right: 1rem;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+        
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dropdown-item {
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-item:hover {
+            background-color: var(--light-color);
+            padding-left: 20px;
+        }
+        
+        /* Hero Section */
+        .service-header {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9) 0%, rgba(52, 152, 219, 0.8) 100%), 
+                        url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 8rem 0;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(231, 76, 60, 0.3) 0%, transparent 40%);
+        }
+        
+        .service-header h2 {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        /* Process Section */
+        .process-phase {
+            position: relative;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all var(--transition-time) ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .process-phase:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .phase-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 1rem;
+            vertical-align: middle;
+        }
+        
+        /* Portfolio Section */
+        .portfolio-item {
+            position: relative;
+            margin-bottom: 30px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all var(--transition-time) ease;
+        }
+        
+        .portfolio-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform var(--transition-time) ease;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: rgba(44, 62, 80, 0.95);
+            color: white;
+            transition: all var(--transition-time) ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            bottom: 0;
+        }
+        
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.05);
+        }
+        
+        /* Style Cards */
+        .style-card {
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: all var(--transition-time) ease;
+            background-color: white;
+        }
+        
+        .style-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .style-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            transition: all var(--transition-time) ease;
+        }
+        
+        .style-card:hover .style-image {
+            transform: scale(1.05);
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        /* Technology Section */
+        .software-logo {
+            height: 60px;
+            margin: 15px;
+            filter: grayscale(100%) opacity(0.7);
+            transition: all var(--transition-time) ease;
+        }
+        
+        .software-logo:hover {
+            filter: grayscale(0) opacity(1);
+            transform: scale(1.15);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: var(--light-color);
+            transition: color var(--transition-time) ease;
+        }
+        
+        footer a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+        
+        .footer-logo {
+            width: 100px;
+            margin-bottom: 1rem;
+        }
+        
+        .social-icons {
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all var(--transition-time) ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Animaciones */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Efecto parallax */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Secciones con fondo */
+        .bg-light-custom {
+            background-color: #f8f9fa;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bg-light-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(231, 76, 60, 0.03)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+            background-size: cover;
+            z-index: 0;
+        }
+        
+        .bg-light-custom > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .service-header {
+                padding: 6rem 0;
+                background-attachment: scroll;
+            }
+            
+            .navbar-brand span {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+            
+            .service-header {
+                padding: 4rem 0;
+            }
+            
+            .process-phase {
+                padding: 1.5rem;
+            }
+            
+            .phase-number {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .service-header h2 {
+                font-size: 2rem;
+            }
+            
+            .service-header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand me-auto d-flex align-items-center" href="/index.html#inicio">
+                <img src="/Imagenes/Logo 2.png" alt="logo" width="100px" class="me-2">
+                <span class="fs-1 fw-bold">
+                    <span class="text-warning">Akuun</span>
+                    <span class="text-dark">Arquitectos</span>
+                </span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active fs-5" href="/index.html#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5" href="/index.html#nosotros">Nosotros</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Servicios
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item fs-5" href="/diseño.html">Diseño Arquitectónico</a></li>
+                            <li><a class="dropdown-item fs-5" href="/compraventa.html">CompraVenta</a></li>
+                            <li><a class="dropdown-item fs-5" href="/renta.html">Renta de Maquinaria</a></li>
+                            <li><a class="dropdown-item fs-5" href="/topografia.html">Topografía</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5" href="/index.html#portafolio">Portafolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5" href="/index.html#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Service Header -->
+    <section class="service-header">
+        <div class="container text-center">
+            <h2 class="display-3 fw-bold mb-3 animate__animated animate__fadeInDown">Diseño Arquitectónico Personalizado</h2>
+            <p class="lead fs-4 animate__animated animate__fadeInUp animate__delay-1s">Transformamos tus ideas en espacios funcionales, estéticos y sostenibles</p>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main class="container mb-5">
+        <!-- Proyectos a medida -->
+        <section class="row justify-content-center mb-5 py-5 animate-on-scroll">
+            <div class="col-lg-10 text-center">
+                <h3 class="mb-4">Proyectos a medida</h3>
+                <p class="lead">Nuestro equipo de arquitectos combina creatividad, funcionalidad y conocimiento técnico para desarrollar proyectos que se adapten perfectamente a tus necesidades, presupuesto y contexto. Desde viviendas unifamiliares hasta complejos comerciales, cada diseño es único.</p>
+            </div>
+        </section>
+        
+        <!-- Proceso de diseño -->
+        <section class="row justify-content-center mb-5 py-5 bg-light-custom">
+            <div class="col-lg-10">
+                <h3 class="text-center mb-5 animate-on-scroll">Nuestro proceso de diseño</h3>
+                
+                <div class="process-phase animate-on-scroll">
+                    <span class="phase-number">1</span>
+                    <div class="phase-content">
+                        <h4>Programa de necesidades</h4>
+                        <p>Reuniones detalladas con el cliente para entender sus requerimientos, estilo de vida, preferencias estéticas y presupuesto. Desarrollo del brief del proyecto.</p>
+                    </div>
+                </div>
+                
+                <div class="process-phase animate-on-scroll" data-delay="0.2s">
+                    <span class="phase-number">2</span>
+                    <div class="phase-content">
+                        <h4>Estudio de sitio</h4>
+                        <p>Análisis del terreno, condiciones climáticas, normativas locales y contexto urbano. Levantamiento topográfico y estudio de suelos si es necesario.</p>
+                    </div>
+                </div>
+                
+                <div class="process-phase animate-on-scroll" data-delay="0.4s">
+                    <span class="phase-number">3</span>
+                    <div class="phase-content">
+                        <h4>Concepto y anteproyecto</h4>
+                        <p>Desarrollo de ideas conceptuales, diagramas de funcionamiento y primeras propuestas volumétricas. Presentación de esquemas preliminares.</p>
+                    </div>
+                </div>
+                
+                <div class="process-phase animate-on-scroll" data-delay="0.6s">
+                    <span class="phase-number">4</span>
+                    <div class="phase-content">
+                        <h4>Proyecto ejecutivo</h4>
+                        <p>Elaboración de planos constructivos detallados, especificaciones técnicas, memoria descriptiva y todos los documentos necesarios para la construcción.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Portafolio -->
+        <section class="row justify-content-center mb-5 py-5">
+            <div class="col-lg-10">
+                <h3 class="text-center mb-4 animate-on-scroll">Portafolio de proyectos</h3>
+                <p class="text-center mb-5 animate-on-scroll">Algunos ejemplos de nuestro trabajo en diferentes tipologías y escalas:</p>
+                
+                <div class="row">
+                    <div class="col-md-4 mb-4 animate-on-scroll">
+                        <div class="portfolio-item">
+                            <img src="/imagenes/WhatsApp Image 2025-05-02 at 1.45.34 PM (1).jpeg" alt="Casa contemporánea" class="portfolio-image">
+                            <div class="portfolio-overlay">
+                                <h4>Residencia GA</h4>
+                                <p>Yahualica, Jalisco, 250 m²</p>
+                                <button class="btn btn-sm btn-outline-light mt-2 view-project-btn" data-project="residencia-ga">Ver detalles</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4 animate-on-scroll" data-delay="0.2s">
+                        <div class="portfolio-item">
+                            <img src="/imagenes/WhatsApp Image 2025-05-02 at 1.45.33 PM.jpeg" alt="Edificio de departamentos" class="portfolio-image">
+                            <div class="portfolio-overlay">
+                                <h4>Edificio residencial</h4>
+                                <p>Aguascalientes, 840 m²</p>
+                                <button class="btn btn-sm btn-outline-light mt-2 view-project-btn" data-project="edificio-residencial">Ver detalles</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4 animate-on-scroll" data-delay="0.4s">
+                        <div class="portfolio-item">
+                            <img src="/imagenes/WhatsApp Image 2025-05-02 at 1.45.34 PM.jpeg" alt="Casa de campo" class="portfolio-image">
+                            <div class="portfolio-overlay">
+                                <h4>Casa de campo</h4>
+                                <p>El Santuario Mexticacán, 2,000 m²</p>
+                                <button class="btn btn-sm btn-outline-light mt-2 view-project-btn" data-project="casa-campo">Ver detalles</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4 animate-on-scroll">
+                    <button class="btn btn-primary" id="load-more-projects">Ver más proyectos</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Estilos arquitectónicos -->
+        <section class="row justify-content-center mb-5 py-5 bg-light-custom">
+            <div class="col-lg-10">
+                <h3 class="text-center mb-4 animate-on-scroll">Estilos arquitectónicos</h3>
+                <p class="text-center mb-5 animate-on-scroll">Trabajamos en diversos lenguajes arquitectónicos según las preferencias del cliente:</p>
+                
+                <div class="row">
+                    <div class="col-md-3 mb-4 animate-on-scroll">
+                        <div class="style-card">
+                            <div class="style-image" style="background-image: url(/imagenes/Contemporaneo.jpg);"></div>
+                            <div class="card-body">
+                                <h4 class="card-title">Contemporáneo</h4>
+                                <p class="card-text">Líneas limpias, materiales honestos y integración con el entorno.</p>
+                                <button class="btn btn-sm btn-outline-primary style-details-btn" data-style="contemporaneo">Más info</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 mb-4 animate-on-scroll" data-delay="0.1s">
+                        <div class="style-card">
+                            <div class="style-image" style="background-image: url(/imagenes/Moderno.jpg);"></div>
+                            <div class="card-body">
+                                <h4 class="card-title">Moderno</h4>
+                                <p class="card-text">Influencias del movimiento moderno con funcionalidad priorizada.</p>
+                                <button class="btn btn-sm btn-outline-primary style-details-btn" data-style="moderno">Más info</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 mb-4 animate-on-scroll" data-delay="0.2s">
+                        <div class="style-card">
+                            <div class="style-image" style="background-image: url(/imagenes/Tradicional.jpg);"></div>
+                            <div class="card-body">
+                                <h4 class="card-title">Tradicional</h4>
+                                <p class="card-text">Reinterpretación de estilos históricos con técnicas actuales.</p>
+                                <button class="btn btn-sm btn-outline-primary style-details-btn" data-style="tradicional">Más info</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 mb-4 animate-on-scroll" data-delay="0.3s">
+                        <div class="style-card">
+                            <div class="style-image" style="background-image: url(/imagenes/Sostenible.jpg);"></div>
+                            <div class="card-body">
+                                <h4 class="card-title">Sostenible</h4>
+                                <p class="card-text">Enfoque bioclimático con materiales ecológicos y eficiencia energética.</p>
+                                <button class="btn btn-sm btn-outline-primary style-details-btn" data-style="sostenible">Más info</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Tecnología -->
+        <section class="row justify-content-center mb-5 py-5">
+            <div class="col-lg-10 text-center">
+                <h3 class="mb-4 animate-on-scroll">Tecnología de vanguardia</h3>
+                <p class="mb-5 animate-on-scroll">Utilizamos las herramientas más avanzadas para garantizar precisión y calidad en nuestros diseños:</p>
+                
+                <div class="d-flex flex-wrap justify-content-center animate-on-scroll">
+                    <img src="/imagenes/Cad.jpg" alt="AutoCAD" class="software-logo" data-toggle="tooltip" title="AutoCAD">
+                    <img src="/imagenes/revit.jpg" alt="Revit" class="software-logo" data-toggle="tooltip" title="Revit">
+                    <img src="/imagenes/SketchUp.jpg" alt="SketchUp" class="software-logo" data-toggle="tooltip" title="SketchUp">
+                    <img src="/imagenes/lumion.jpg" alt="Lumion" class="software-logo" data-toggle="tooltip" title="Lumion">
+                    <img src="/imagenes/Rhino.jpg" alt="Rhino" class="software-logo" data-toggle="tooltip" title="Rhino">
+                </div>
+                
+                <div class="mt-5 animate-on-scroll" data-delay="0.2s">
+                    <h4 class="mb-3">Nuestro flujo de trabajo digital</h4>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar bg-secondary" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2 small text-muted">
+                        <span>Concepto</span>
+                        <span>Modelado 3D</span>
+                        <span>Renderizado</span>
+                        <span>Documentación</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonios -->
+        <section class="row justify-content-center mb-5 py-5 bg-light-custom animate-on-scroll">
+            <div class="col-lg-10">
+                <h3 class="text-center mb-5">Lo que dicen nuestros clientes</h3>
+                
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <i class="bi bi-quote fs-1 text-muted"></i>
+                                </div>
+                                <p class="card-text">"El equipo de Akuun transformó completamente nuestra visión en una casa que superó todas nuestras expectativas. Su atención al detalle es impresionante."</p>
+                                <div class="mt-auto">
+                                    <h5 class="mb-1">Claudia Martínez</h5>
+                                    <small class="text-muted">Residencia GA, Yahualica</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <i class="bi bi-quote fs-1 text-muted"></i>
+                                </div>
+                                <p class="card-text">"Profesionales desde el primer contacto. Nos guiaron en cada paso del proceso y el resultado final fue exactamente lo que necesitábamos para nuestro negocio."</p>
+                                <div class="mt-auto">
+                                    <h5 class="mb-1">Ricardo González</h5>
+                                    <small class="text-muted">Edificio Comercial, Aguascalientes</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <i class="bi bi-quote fs-1 text-muted"></i>
+                                </div>
+                                <p class="card-text">"Su enfoque sostenible y moderno nos dio exactamente la casa de campo que queríamos, pero con un toque único que nunca hubiéramos imaginado por nosotros mismos."</p>
+                                <div class="mt-auto">
+                                    <h5 class="mb-1">Familia López</h5>
+                                    <small class="text-muted">Casa de Campo, Mexticacán</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="row justify-content-center mb-5 py-5 bg-primary text-white animate-on-scroll">
+            <div class="col-lg-8 text-center">
+                <h3 class="mb-4">¿Listo para comenzar tu proyecto?</h3>
+                <p class="lead mb-5">Contáctanos hoy mismo para una consulta gratuita y descubre cómo podemos hacer realidad tus ideas arquitectónicas.</p>
+                <a href="/index.html#contacto" class="btn btn-light btn-lg px-4">Solicitar consulta</a>
+            </div>
+        </section>
+        
+        <!-- Botón volver -->
+        <div class="text-center animate-on-scroll">
+            <a href="/index.html" class="btn btn-outline-primary back-link">
+                <i class="bi bi-arrow-left me-2"></i> Volver a principal
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="/Imagenes/Logo 2.png" alt="logo" width="100" class="me-3">
+                        <div>
+                            <h3 class="h5 mb-0">Akuun Arquitectos</h3>
+                            <p class="small mb-0">Transformando ideas en espacios únicos</p>
+                        </div>
+                    </div>
+                    <p class="small mb-4">Somos un estudio de arquitectura comprometido con la excelencia en el diseño, la funcionalidad y la sostenibilidad de cada proyecto.</p>
+                    
+                    <div class="social-icons">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="#"><i class="bi bi-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h4 class="h5 mb-3">Enlaces</h4>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="/index.html#inicio" class="text-white-50">Inicio</a></li>
+                        <li class="mb-2"><a href="/index.html#nosotros" class="text-white-50">Nosotros</a></li>
+                        <li class="mb-2"><a href="/index.html#servicios" class="text-white-50">Servicios</a></li>
+                        <li class="mb-2"><a href="/index.html#portafolio" class="text-white-50">Portafolio</a></li>
+                        <li><a href="/index.html#contacto" class="text-white-50">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="h5 mb-3">Servicios</h4>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="/diseño.html" class="text-white-50">Diseño Arquitectónico</a></li>
+                        <li class="mb-2"><a href="/compraventa.html" class="text-white-50">CompraVenta</a></li>
+                        <li class="mb-2"><a href="/renta.html" class="text-white-50">Renta de Maquinaria</a></li>
+                        <li><a href="/topografia.html" class="text-white-50">Topografía</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3">
+                    <h4 class="h5 mb-3">Contacto</h4>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2 d-flex align-items-start">
+                            <i class="bi bi-geo-alt-fill me-2 mt-1"></i>
+                            <span>Calle Pelícano #44, Yahualica, Jalisco</span>
+                        </li>
+                        <li class="mb-2 d-flex align-items-center">
+                            <i class="bi bi-telephone-fill me-2"></i>
+                            <span>+52 449 224 19 60</span>
+                        </li>
+                        <li class="d-flex align-items-center">
+                            <i class="bi bi-envelope-fill me-2"></i>
+                            <span>arq.marcolizardi@gmail.com</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-4">
+                        <a href="/index.html#contacto" class="btn btn-sm btn-outline-light">Enviar mensaje</a>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="mt-4 mb-3 bg-secondary">
+            
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small mb-0">© 2025 Akuun Arquitectos. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small mb-0">
+                        <a href="#" class="text-white-50 me-2">Política de privacidad</a>
+                        <a href="#" class="text-white-50">Términos de servicio</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+    
+    <!-- Modal para detalles de proyecto -->
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="projectModalLabel">Detalles del proyecto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="projectCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <!-- Las imágenes se cargarán dinámicamente con JavaScript -->
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <h4 id="projectTitle"></h4>
+                    <p id="projectLocation" class="text-muted"></p>
+                    <div id="projectDetails"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal para estilos arquitectónicos -->
+    <div class="modal fade" id="styleModal" tabindex="-1" aria-labelledby="styleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="styleModalLabel">Detalles del estilo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="styleModalImage" src="" alt="" class="img-fluid mb-3">
+                    <h4 id="styleModalTitle"></h4>
+                    <div id="styleModalContent"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Función para manejar el scroll de la navbar
+        function handleNavbarScroll() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+        
+        // Función para animar elementos al hacer scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    const delay = element.getAttribute('data-delay') || 0;
+                    
+                    setTimeout(() => {
+                        element.classList.add('visible');
+                    }, delay * 1000);
+                }
+            });
+        }
+        
+        // Función para el botón "Volver arriba"
+        function handleBackToTop() {
+            const backToTopButton = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        }
+        
+        // Función para inicializar tooltips
+        function initTooltips() {
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'));
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        }
+        
+        // Función para manejar los modales de proyectos
+        function setupProjectModals() {
+            const projects = {
+                'residencia-ga': {
+                    title: 'Residencia GA',
+                    location: 'Yahualica, Jalisco, 250 m²',
+                    images: [
+                        '/imagenes/WhatsApp Image 2025-05-02 at 1.45.34 PM (1).jpeg',
+                        '/imagenes/Contemporaneo.jpg',
+                        '/imagenes/Moderno.jpg'
+                    ],
+                    details: `
+                        <p>Esta residencia contemporánea fue diseñada para una familia joven que buscaba espacios abiertos y mucha luz natural.</p>
+                        <h5 class="mt-4">Características principales:</h5>
+                        <ul>
+                            <li>Diseño bioclimático para maximizar la ventilación natural</li>
+                            <li>Grandes ventanales con protección solar</li>
+                            <li>Integración de jardines interiores</li>
+                            <li>Uso de materiales locales y sostenibles</li>
+                        </ul>
+                        <p class="mt-3">El proyecto fue completado en 14 meses y recibió el premio al "Mejor Diseño Residencial" en la Bienal de Arquitectura Jalisciense 2024.</p>
+                    `
+                },
+                'edificio-residencial': {
+                    title: 'Edificio Residencial',
+                    location: 'Aguascalientes, 840 m²',
+                    images: [
+                        '/imagenes/WhatsApp Image 2025-05-02 at 1.45.33 PM.jpeg',
+                        '/imagenes/Tradicional.jpg',
+                        '/imagenes/Sostenible.jpg'
+                    ],
+                    details: `
+                        <p>Este edificio de 12 departamentos combina funcionalidad con un diseño moderno que respeta el contexto urbano histórico de la zona.</p>
+                        <h5 class="mt-4">Características principales:</h5>
+                        <ul>
+                            <li>Fachada ventilada con paneles prefabricados</li>
+                            <li>Doble altura en áreas comunes</li>
+                            <li>Sistema de captación de agua pluvial</li>
+                            <li>Azotea verde compartida</li>
+                        </ul>
+                        <p class="mt-3">El proyecto destacó por su eficiencia en el uso del espacio y su adaptabilidad a diferentes tipos de familias.</p>
+                    `
+                },
+                'casa-campo': {
+                    title: 'Casa de Campo',
+                    location: 'El Santuario Mexticacán, 2,000 m²',
+                    images: [
+                        '/imagenes/WhatsApp Image 2025-05-02 at 1.45.34 PM.jpeg',
+                        '/imagenes/Sostenible.jpg',
+                        '/imagenes/Tradicional.jpg'
+                    ],
+                    details: `
+                        <p>Esta casa de campo fue diseñada como un refugio familiar que integra arquitectura contemporánea con técnicas de construcción tradicionales.</p>
+                        <h5 class="mt-4">Características principales:</h5>
+                        <ul>
+                            <li>Muros de adobe con aislamiento térmico mejorado</li>
+                            <li>Sistema fotovoltaico para energía independiente</li>
+                            <li>Diseño que aprovecha las vistas panorámicas</li>
+                            <li>Espacios interiores-exteriores fluidos</li>
+                        </ul>
+                        <p class="mt-3">La casa ha sido publicada en varias revistas de arquitectura por su enfoque sostenible y sensible al contexto rural.</p>
+                    `
+                }
+            };
+            
+            document.querySelectorAll('.view-project-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const projectId = this.getAttribute('data-project');
+                    const project = projects[projectId];
+                    
+                    document.getElementById('projectTitle').textContent = project.title;
+                    document.getElementById('projectLocation').textContent = project.location;
+                    document.getElementById('projectDetails').innerHTML = project.details;
+                    
+                    const carouselInner = document.querySelector('#projectCarousel .carousel-inner');
+                    carouselInner.innerHTML = '';
+                    
+                    project.images.forEach((image, index) => {
+                        const item = document.createElement('div');
+                        item.className = `carousel-item ${index === 0 ? 'active' : ''}`;
+                        item.innerHTML = `<img src="${image}" class="d-block w-100" alt="${project.title}">`;
+                        carouselInner.appendChild(item);
+                    });
+                    
+                    const modal = new bootstrap.Modal(document.getElementById('projectModal'));
+                    modal.show();
+                });
+            });
+        }
+        
+        // Función para manejar los modales de estilos arquitectónicos
+        function setupStyleModals() {
+            const styles = {
+                'contemporaneo': {
+                    title: 'Estilo Contemporáneo',
+                    image: '/imagenes/Contemporaneo.jpg',
+                    content: `
+                        <p>La arquitectura contemporánea se caracteriza por su enfoque en la simplicidad, las líneas limpias y la integración con el entorno.</p>
+                        <h5 class="mt-3">Principales características:</h5>
+                        <ul>
+                            <li>Formas geométricas simples y limpias</li>
+                            <li>Uso de materiales en su estado natural (hormigón visto, madera, acero)</li>
+                            <li>Grandes ventanales y apertura al exterior</li>
+                            <li>Espacios fluidos y multifuncionales</li>
+                            <li>Integración de tecnología y sostenibilidad</li>
+                        </ul>
+                        <p class="mt-3">Este estilo es ideal para quienes buscan un diseño atemporal que prioriza la funcionalidad y la conexión con el entorno.</p>
+                    `
+                },
+                'moderno': {
+                    title: 'Estilo Moderno',
+                    image: '/imagenes/Moderno.jpg',
+                    content: `
+                        <p>El estilo moderno tiene sus raíces en el movimiento moderno de principios del siglo XX, con énfasis en la función sobre la forma.</p>
+                        <h5 class="mt-3">Principales características:</h5>
+                        <ul>
+                            <li>Techos planos o con pendientes suaves</li>
+                            <li>Grandes superficies vidriadas</li>
+                            <li>Plantas libres y espacios abiertos</li>
+                            <li>Uso de pilotes para elevar la estructura</li>
+                            <li>Integración con la naturaleza</li>
+                        </ul>
+                        <p class="mt-3">Este estilo es perfecto para quienes aprecian la pureza de las formas y la honestidad en los materiales.</p>
+                    `
+                },
+                'tradicional': {
+                    title: 'Estilo Tradicional',
+                    image: '/imagenes/Tradicional.jpg',
+                    content: `
+                        <p>La arquitectura tradicional reinterpreta estilos históricos con técnicas y comodidades modernas.</p>
+                        <h5 class="mt-3">Principales características:</h5>
+                        <ul>
+                            <li>Techos inclinados con aleros generosos</li>
+                            <li>Materiales naturales como piedra, madera y ladrillo</li>
+                            <li>Proporciones clásicas y simetría</li>
+                            <li>Detalles artesanales y ornamentación</li>
+                            <li>Espacios más definidos y compartimentados</li>
+                        </ul>
+                        <p class="mt-3">Ideal para quienes buscan la calidez y el carácter de los estilos históricos con las ventajas de la construcción moderna.</p>
+                    `
+                },
+                'sostenible': {
+                    title: 'Estilo Sostenible',
+                    image: '/imagenes/Sostenible.jpg',
+                    content: `
+                        <p>La arquitectura sostenible prioriza el bajo impacto ambiental y la eficiencia energética sin sacrificar el diseño.</p>
+                        <h5 class="mt-3">Principales características:</h5>
+                        <ul>
+                            <li>Orientación optimizada para ganancia solar pasiva</li>
+                            <li>Materiales ecológicos y de bajo mantenimiento</li>
+                            <li>Sistemas de reciclaje de agua y energía renovable</li>
+                            <li>Aislamiento térmico avanzado</li>
+                            <li>Integración de vegetación en cubiertas y muros</li>
+                        </ul>
+                        <p class="mt-3">Perfecto para quienes buscan reducir su huella ecológica mientras disfrutan de un espacio saludable y eficiente.</p>
+                    `
+                }
+            };
+            
+            document.querySelectorAll('.style-details-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const styleId = this.getAttribute('data-style');
+                    const style = styles[styleId];
+                    
+                    document.getElementById('styleModalTitle').textContent = style.title;
+                    document.getElementById('styleModalImage').src = style.image;
+                    document.getElementById('styleModalImage').alt = style.title;
+                    document.getElementById('styleModalContent').innerHTML = style.content;
+                    
+                    const modal = new bootstrap.Modal(document.getElementById('styleModal'));
+                    modal.show();
+                });
+            });
+        }
+        
+        // Función para cargar más proyectos (simulada)
+        function setupLoadMoreProjects() {
+            document.getElementById('load-more-projects').addEventListener('click', function() {
+                // Simulación de carga de más proyectos
+                this.textContent = 'Cargando...';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    // En una implementación real, aquí se haría una petición AJAX
+                    alert('En una implementación real, aquí se cargarían más proyectos desde el servidor.');
+                    this.textContent = 'Ver más proyectos';
+                    this.disabled = false;
+                }, 1500);
+            });
+        }
+        
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            handleNavbarScroll();
+            animateOnScroll();
+            handleBackToTop();
+            initTooltips();
+            setupProjectModals();
+            setupStyleModals();
+            setupLoadMoreProjects();
+        });
+        
+        window.addEventListener('scroll', function() {
+            handleNavbarScroll();
+            animateOnScroll();
+            handleBackToTop();
+        });
+    </script>
+</body>
+</html>

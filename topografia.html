@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Akuun Arquitectos - Levantamientos Topográficos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #e67e22;
+      --accent-color: #3498db;
+      --light-color: #ecf0f1;
+      --dark-color: #2c3e50;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding-top: 80px;
+      background-color: #f8f9fa;
+    }
+    
+    /* Navbar estilos */
+    .navbar {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .navbar.scrolled {
+      background-color: white !important;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    
+    .navbar-brand span {
+      transition: all 0.3s ease;
+    }
+    
+    .navbar.scrolled .navbar-brand span {
+      font-size: 1.5rem !important;
+    }
+    
+    .nav-link {
+      position: relative;
+      margin: 0 10px;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--secondary-color);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    /* Header estilos */
+    .page-header {
+      background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+      padding: 100px 0;
+      color: white;
+      margin-bottom: 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('/imagenes/topografia-bg.jpg') center/cover no-repeat;
+      opacity: 0.2;
+    }
+    
+    /* Card estilos */
+    .card {
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    /* Process steps */
+    .process-step {
+      position: relative;
+      padding-left: 40px;
+      margin-bottom: 30px;
+    }
+    
+    .process-step::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 30px;
+      height: 30px;
+      background-color: var(--secondary-color);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    
+    /* Botones */
+    .btn-primary {
+      background-color: var(--secondary-color);
+      border-color: var(--secondary-color);
+      padding: 10px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background-color: #d35400;
+      border-color: #d35400;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(230, 126, 34, 0.4);
+    }
+    
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+      position: relative;
+    }
+    
+    footer a:hover {
+      color: var(--secondary-color) !important;
+    }
+    
+    /* Animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .navbar-brand span {
+        font-size: 1.5rem !important;
+      }
+      
+      .nav-link {
+        font-size: 1.1rem !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+ <!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand me-auto d-flex align-items-center" href="/index.html#inicio">
+            <img src="/Imagenes/Logo 2.png" alt="logo" width="100px" class="me-2">
+            <span class="fs-1 fw-bold">
+                <span class="text-warning">Akuun</span>
+                <span class="text-dark">Arquitectos</span>
+            </span>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active fs-3" href="/index.html#inicio">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-3" href="/index.html#nosotros">Nosotros</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fs-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Servicios
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item fs-4" href="/diseño.html">Diseño Arquitectónico</a></li>
+                        <li><a class="dropdown-item fs-4" href="/compraventa.html">CompraVenta</a></li>
+                        <li><a class="dropdown-item fs-4" href="/renta.html">Renta de Maquinaria</a></li>
+                        <li><a class="dropdown-item fs-4" href="/topografia.html">Topografía</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-3" href="/index.html#portafolio">Portafolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-3" href="/index.html#contacto">Contacto</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+  <!-- Encabezado -->
+  <header class="page-header">
+    <div class="container text-center position-relative">
+      <h1 class="display-3 fw-bold mb-3">Akuun Arquitectos</h1>
+      <p class="lead fs-2">Levantamientos topográficos - Precisión y tecnología</p>
+    </div>
+  </header>
+
+  <!-- Sección principal -->
+  <section class="container my-5 fade-in">
+    <div class="text-center mb-5">
+      <h2 class="display-4 fw-bold mb-3">Levantamientos Topográficos Profesionales</h2>
+      <p class="lead fs-3">Tecnología de punta para mediciones precisas y representación fiel del terreno</p>
+    </div>
+  </section>
+
+  <!-- Contenido principal -->
+  <div class="container py-5">
+
+    <!-- Precisión -->
+    <div class="mb-5 fade-in">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <h3 class="display-5 fw-bold mb-4">Precisión en cada medición</h3>
+          <p class="fs-5">En Akuun Arquitectos realizamos levantamientos topográficos con equipos de última generación y personal altamente capacitado, garantizando exactitud en los datos recopilados para la correcta planificación y ejecución de tus proyectos de construcción, urbanización o delimitación de terrenos.</p>
+        </div>
+        <div class="col-lg-6">
+          <img src="/imagenes/topografia-precision.jpg" alt="Precisión en topografía" class="img-fluid rounded shadow">
+        </div>
+      </div>
+    </div>
+
+    <!-- Tecnología -->
+    <div class="mb-5 py-5 fade-in">
+      <h3 class="display-5 fw-bold mb-5 text-center">Tecnología que utilizamos</h3>
+      <p class="text-center mb-5 fs-5">Contamos con equipos de topografía de última generación para garantizar la máxima precisión:</p>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        <!-- Card -->
+        <div class="col">
+          <div class="card h-100">
+            <img src="/imagenes/Estacion total.jpg" class="card-img-top" alt="Estación Total">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Estación Total Robotizada</h5>
+              <p class="card-text">Equipos Leica y Topcon con precisión angular de 1" y medición sin prisma hasta 500m.</p>
+            </div>
+            <div class="card-footer bg-transparent">
+              <button class="btn btn-sm btn-outline-secondary" onclick="showTechDetails('estacion-total')">Más detalles</button>
+            </div>
+          </div>
+        </div>
+        <!-- Card -->
+        <div class="col">
+          <div class="card h-100">
+            <img src="/imagenes/Gps.jpg" class="card-img-top" alt="GPS RTK">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">GPS Topográfico RTK</h5>
+              <p class="card-text">Sistemas GNSS de doble frecuencia con corrección diferencial en tiempo real.</p>
+            </div>
+            <div class="card-footer bg-transparent">
+              <button class="btn btn-sm btn-outline-secondary" onclick="showTechDetails('gps-rtk')">Más detalles</button>
+            </div>
+          </div>
+        </div>
+        <!-- Card -->
+        <div class="col">
+          <div class="card h-100">
+            <img src="/imagenes/Scaner.jpg" class="card-img-top" alt="Escáner Láser">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Escáner Láser 3D</h5>
+              <p class="card-text">Captura millones de puntos por segundo para modelado tridimensional de alta precisión.</p>
+            </div>
+            <div class="card-footer bg-transparent">
+              <button class="btn btn-sm btn-outline-secondary" onclick="showTechDetails('escaner-laser')">Más detalles</button>
+            </div>
+          </div>
+        </div>
+        <!-- Card -->
+        <div class="col">
+          <div class="card h-100">
+            <img src="/imagenes/Dron.jpg" class="card-img-top" alt="Dron Topográfico">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Drones Topográficos</h5>
+              <p class="card-text">Fotogrametría y LiDAR aéreo para levantamientos de grandes extensiones con alta eficiencia.</p>
+            </div>
+            <div class="card-footer bg-transparent">
+              <button class="btn btn-sm btn-outline-secondary" onclick="showTechDetails('drones')">Más detalles</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para detalles de tecnología -->
+    <div class="modal fade" id="techModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="techModalTitle">Detalles de Tecnología</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="techModalBody">
+            <!-- Contenido dinámico -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aplicaciones -->
+    <div class="mb-5 py-5 fade-in">
+      <h3 class="display-5 fw-bold mb-5 text-center">Aplicaciones de nuestros servicios</h3>
+      <p class="text-center mb-5 fs-5">Nuestros levantamientos topográficos son esenciales para diversos tipos de proyectos:</p>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <!-- Aplicaciones individuales -->
+        <div class="col">
+          <div class="card p-4 h-100">
+            <div class="d-flex align-items-center mb-3">
+              <i class="bi bi-building fs-1 me-3 text-primary"></i>
+              <h5 class="mb-0 fw-bold">Proyectos de construcción</h5>
+            </div>
+            <p>Planimetría y altimetría para diseño de cimentaciones, estructuras y obras civiles.</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card p-4 h-100">
+            <div class="d-flex align-items-center mb-3">
+              <i class="bi bi-map fs-1 me-3 text-primary"></i>
+              <h5 class="mb-0 fw-bold">Urbanizaciones</h5>
+            </div>
+            <p>Levantamientos para diseño de vialidades, lotificación y servicios urbanos.</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card p-4 h-100">
+            <div class="d-flex align-items-center mb-3">
+              <i class="bi bi-pin-map fs-1 me-3 text-primary"></i>
+              <h5 class="mb-0 fw-bold">Delimitación de terrenos</h5>
+            </div>
+            <p>Deslindes y colindancias con valor legal, amojonamiento y georreferenciación.</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card p-4 h-100">
+            <div class="d-flex align-items-center mb-3">
+              <i class="bi bi-minecart-loaded fs-1 me-3 text-primary"></i>
+              <h5 class="mb-0 fw-bold">Movimiento de tierras</h5>
+            </div>
+            <p>Cubicaciones para corte y relleno, control de volúmenes y monitoreo de avances.</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card p-4 h-100">
+            <div class="d-flex align-items-center mb-3">
+              <i class="bi bi-box-seam fs-1 me-3 text-primary"></i>
+              <h5 class="mb-0 fw-bold">Modelado 3D</h5>
+            </div>
+            <p>Generación de modelos digitales del terreno (MDT) para simulaciones y análisis.</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card p-4 h-100">
+            <div class="d-flex align-items-center mb-3">
+              <i class="bi bi-lightning-charge fs-1 me-3 text-primary"></i>
+              <h5 class="mb-0 fw-bold">Infraestructura</h5>
+            </div>
+            <p>Trazado de carreteras, puentes, líneas eléctricas y ductos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Entregables -->
+    <div class="mb-5 py-5 fade-in">
+      <h3 class="display-5 fw-bold mb-5 text-center">Productos entregables</h3>
+      <p class="text-center mb-5 fs-5">Nuestros informes incluyen toda la documentación necesaria para tu proyecto:</p>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-header bg-primary text-white">
+              <h5 class="mb-0">Documentación Gráfica</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex align-items-center">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <div>
+                  <strong>Planos topográficos</strong>
+                  <div class="small">Escalas desde 1:50 hasta 1:5000</div>
+                </div>
+              </li>
+              <li class="list-group-item d-flex align-items-center">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <div>
+                  <strong>Curvas de nivel</strong>
+                  <div class="small">Equidistancia desde 0.10m</div>
+                </div>
+              </li>
+              <li class="list-group-item d-flex align-items-center">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <div>
+                  <strong>Secciones transversales</strong>
+                  <div class="small">Perfiles para diseño vial</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-header bg-primary text-white">
+              <h5 class="mb-0">Archivos Digitales</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex align-items-center">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <div>
+                  <strong>Modelos digitales</strong>
+                  <div class="small">Archivos DWG, DXF, LandXML</div>
+                </div>
+              </li>
+              <li class="list-group-item d-flex align-items-center">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <div>
+                  <strong>Nube de puntos</strong>
+                  <div class="small">Formatos estándar</div>
+                </div>
+              </li>
+              <li class="list-group-item d-flex align-items-center">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <div>
+                  <strong>Ortofotos</strong>
+                  <div class="small">Imágenes georreferenciadas</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-header bg-primary text-white">
+              <h5 class="mb-0">Documentación Legal</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex align-items-center">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <div>
+                  <strong>Informe técnico</strong>
+                  <div class="small">Metodología y observaciones</div>
+                </div>
+              </li>
+              <li class="list-group-item d-flex align-items-center">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <div>
+                  <strong>Modelos 3D</strong>
+                  <div class="small">Visualizaciones del terreno</div>
+                </div>
+              </li>
+              <li class="list-group-item d-flex align-items-center">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <div>
+                  <strong>Certificación</strong>
+                  <div class="small">Validez legal notarial</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Proceso de trabajo -->
+    <div class="mb-5 py-5 fade-in">
+      <h3 class="display-5 fw-bold mb-5 text-center">Nuestro proceso de trabajo</h3>
+      <p class="text-center mb-5 fs-5">Metodología sistemática para garantizar resultados confiables:</p>
+      <div class="row g-4">
+        <!-- Paso -->
+        <div class="col-md-6">
+          <div class="process-step" data-step="1">
+            <h4 class="fw-bold">Reconocimiento del área</h4>
+            <p>Evaluación inicial de condiciones del terreno y requerimientos del proyecto. Realizamos un análisis completo para determinar los mejores puntos de control y metodología a emplear.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="process-step" data-step="2">
+            <h4 class="fw-bold">Planificación</h4>
+            <p>Selección de metodología y equipos óptimos según las características del terreno y los requerimientos del cliente. Definimos cronograma y recursos necesarios.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="process-step" data-step="3">
+            <h4 class="fw-bold">Establecimiento de control</h4>
+            <p>Colocación de vértices con GPS de alta precisión para garantizar la exactitud de todas las mediciones posteriores. Estos puntos servirán como referencia para todo el levantamiento.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="process-step" data-step="4">
+            <h4 class="fw-bold">Levantamiento de campo</h4>
+            <p>Captura de datos con equipos especializados según la metodología definida. Registramos todos los detalles necesarios con la máxima precisión posible.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="process-step" data-step="5">
+            <h4 class="fw-bold">Procesamiento de datos</h4>
+            <p>Análisis y depuración de la información recolectada. Utilizamos software especializado para procesar los datos y generar los productos requeridos.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="process-step" data-step="6">
+            <h4 class="fw-bold">Generación de productos</h4>
+            <p>Elaboración de planos, modelos y documentación técnica final según los requerimientos del cliente y los estándares de la industria.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonios -->
+    <div class="mb-5 py-5 fade-in">
+      <h3 class="display-5 fw-bold mb-5 text-center">Lo que dicen nuestros clientes</h3>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-quote fs-1 text-muted"></i>
+              <p class="card-text fs-5">"El trabajo de topografía realizado por Akuun fue fundamental para el éxito de nuestro proyecto de urbanización. Precisión y profesionalismo en cada etapa."</p>
+              <div class="mt-4">
+                <img src="/imagenes/cliente1.jpg" class="rounded-circle mb-2" width="80" alt="Cliente">
+                <h5 class="mb-1">Ing. Roberto Méndez</h5>
+                <p class="text-muted small">Constructora Diamante</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-quote fs-1 text-muted"></i>
+              <p class="card-text fs-5">"Los modelos 3D generados a partir del levantamiento topográfico nos permitieron visualizar perfectamente el terreno y optimizar nuestro diseño arquitectónico."</p>
+              <div class="mt-4">
+                <img src="/imagenes/cliente2.jpg" class="rounded-circle mb-2" width="80" alt="Cliente">
+                <h5 class="mb-1">Arq. Laura Sánchez</h5>
+                <p class="text-muted small">Estudio Sánchez & Asociados</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-quote fs-1 text-muted"></i>
+              <p class="card-text fs-5">"Rapidez en la entrega y excelente atención. Los planos topográficos cumplieron con todos los requisitos para el trámite municipal de nuestro proyecto."</p>
+              <div class="mt-4">
+                <img src="/imagenes/cliente3.jpg" class="rounded-circle mb-2" width="80" alt="Cliente">
+                <h5 class="mb-1">Lic. Carlos Ramírez</h5>
+                <p class="text-muted small">Desarrollos Inmobiliarios del Valle</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="bg-primary text-white rounded-3 p-5 mb-5 text-center fade-in" style="background: linear-gradient(135deg, var(--primary-color), var(--dark-color));">
+      <h3 class="display-5 fw-bold mb-4">¿Listo para comenzar tu proyecto?</h3>
+      <p class="fs-4 mb-4">Contáctanos hoy mismo para un presupuesto sin compromiso</p>
+      <a href="/index.html#contacto" class="btn btn-light btn-lg px-5">Solicitar cotización</a>
+    </div>
+
+    <!-- Botón de regreso -->
+    <div class="text-center my-5 fade-in">
+      <a href="/index.html" class="btn btn-primary btn-lg px-5">&larr; Volver a principal</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4 mb-lg-0">
+          <div class="d-flex align-items-center mb-3">
+            <img src="/Imagenes/Logo 2.png" alt="logo" width="80" class="me-3">
+            <div>
+              <h3 class="h5 mb-0">Akuun Arquitectos</h3>
+              <p class="small mb-0">Transformando ideas en espacios únicos</p>
+            </div>
+          </div>
+          <p class="small">Especialistas en levantamientos topográficos con tecnología de punta y más de 15 años de experiencia en el sector.</p>
+          <div class="d-flex mt-4">
+            <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-linkedin fs-4"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-whatsapp fs-4"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+          <h4 class="h5 mb-3">Enlaces</h4>
+          <ul class="list-unstyled small">
+            <li class="mb-2"><a href="/index.html#inicio" class="text-white text-decoration-none">Inicio</a></li>
+            <li class="mb-2"><a href="/index.html#nosotros" class="text-white text-decoration-none">Nosotros</a></li>
+            <li class="mb-2"><a href="/index.html#servicios" class="text-white text-decoration-none">Servicios</a></li>
+            <li class="mb-2"><a href="/index.html#portafolio" class="text-white text-decoration-none">Portafolio</a></li>
+            <li><a href="/index.html#contacto" class="text-white text-decoration-none">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h4 class="h5 mb-3">Servicios</h4>
+          <ul class="list-unstyled small">
+            <li class="mb-2"><a href="/diseño.html" class="text-white text-decoration-none">Diseño Arquitectónico</a></li>
+            <li class="mb-2"><a href="/compraventa.html" class="text-white text-decoration-none">CompraVenta</a></li>
+            <li class="mb-2"><a href="/renta.html" class="text-white text-decoration-none">Renta de Maquinaria</a></li>
+            <li><a href="/topografia.html" class="text-white text-decoration-none">Topografía</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3">
+          <h4 class="h5 mb-3">Contacto</h4>
+          <ul class="list-unstyled small">
+            <li class="mb-2 d-flex align-items-center">
+              <i class="bi bi-geo-alt-fill me-2"></i>
+              <span>Calle Pelícano #44, Yahualica, Jalisco</span>
+            </li>
+            <li class="mb-2 d-flex align-items-center">
+              <i class="bi bi-telephone-fill me-2"></i>
+              <span>+52 449 224 19 60</span>
+            </li>
+            <li class="mb-2 d-flex align-items-center">
+              <i class="bi bi-envelope-fill me-2"></i>
+              <span>arq.marcolizardi@gmail.com</span>
+            </li>
+            <li class="d-flex align-items-center">
+              <i class="bi bi-clock-fill me-2"></i>
+              <span>Lun-Vie: 9:00 - 18:00</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="small mb-0">© 2025 Akuun Arquitectos. Todos los derechos reservados.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <a href="#" class="text-white small text-decoration-none me-3">Política de privacidad</a>
+          <a href="#" class="text-white small text-decoration-none">Términos de servicio</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    // Función para mostrar detalles de tecnología en modal
+    function showTechDetails(tech) {
+      const modalTitle = document.getElementById('techModalTitle');
+      const modalBody = document.getElementById('techModalBody');
+      const techModal = new bootstrap.Modal(document.getElementById('techModal'));
+      
+      let title = '';
+      let content = '';
+      
+      switch(tech) {
+        case 'estacion-total':
+          title = 'Estación Total Robotizada';
+          content = `
+            <div class="row">
+              <div class="col-md-6">
+                <img src="/imagenes/Estacion total.jpg" class="img-fluid rounded mb-3" alt="Estación Total">
+              </div>
+              <div class="col-md-6">
+                <h5>Características técnicas:</h5>
+                <ul>
+                  <li>Precisión angular: 1"</li>
+                  <li>Precisión lineal: 2mm + 2ppm</li>
+                  <li>Alcance sin prisma: 500m</li>
+                  <li>Alcance con prisma: 5,000m</li>
+                  <li>Memoria interna: 30,000 puntos</li>
+                  <li>Conectividad Bluetooth y USB</li>
+                </ul>
+                <h5 class="mt-4">Ventajas:</h5>
+                <ul>
+                  <li>Medición rápida y precisa</li>
+                  <li>Funcionamiento en condiciones climáticas adversas</li>
+                  <li>Seguimiento automático de prismas</li>
+                  <li>Software avanzado de procesamiento</li>
+                </ul>
+              </div>
+            </div>
+          `;
+          break;
+          
+        case 'gps-rtk':
+          title = 'GPS Topográfico RTK';
+          content = `
+            <div class="row">
+              <div class="col-md-6">
+                <img src="/imagenes/Gps.jpg" class="img-fluid rounded mb-3" alt="GPS RTK">
+              </div>
+              <div class="col-md-6">
+                <h5>Características técnicas:</h5>
+                <ul>
+                  <li>Recepción multi-bandas: GPS, GLONASS, Galileo, BeiDou</li>
+                  <li>Precisión horizontal: 8mm + 1ppm</li>
+                  <li>Precisión vertical: 15mm + 1ppm</li>
+                  <li>Radio integrado para corrección RTK</li>
+                  <li>Autonomía de batería: 10 horas</li>
+                  <li>Resistente a agua y polvo (IP67)</li>
+                </ul>
+                <h5 class="mt-4">Aplicaciones:</h5>
+                <ul>
+                  <li>Georreferenciación precisa</li>
+                  <li>Trazado de obras lineales</li>
+                  <li>Replanteo de puntos</li>
+                  <li>Levantamientos de grandes extensiones</li>
+                </ul>
+              </div>
+            </div>
+          `;
+          break;
+          
+        case 'escaner-laser':
+          title = 'Escáner Láser 3D';
+          content = `
+            <div class="row">
+              <div class="col-md-6">
+                <img src="/imagenes/Scaner.jpg" class="img-fluid rounded mb-3" alt="Escáner Láser">
+              </div>
+              <div class="col-md-6">
+                <h5>Características técnicas:</h5>
+                <ul>
+                  <li>Rango de medición: 0.5m a 120m</li>
+                  <li>Precisión: ±2mm</li>
+                  <li>Velocidad de escaneo: 1,000,000 puntos/segundo</li>
+                  <li>Campo de visión: 360° horizontal, 300° vertical</li>
+                  <li>Resolución: 1mm a 50m</li>
+                  <li>Clase láser: 1 (seguro para ojos)</li>
+                </ul>
+                <h5 class="mt-4">Beneficios:</h5>
+                <ul>
+                  <li>Captura completa de entornos en minutos</li>
+                  <li>Datos 3D ricos en información</li>
+                  <li>Reducción de tiempo en campo</li>
+                  <li>Documentación as-built precisa</li>
+                  <li>Integración con software BIM</li>
+                </ul>
+              </div>
+            </div>
+          `;
+          break;
+          
+        case 'drones':
+          title = 'Drones Topográficos';
+          content = `
+            <div class="row">
+              <div class="col-md-6">
+                <img src="/imagenes/Dron.jpg" class="img-fluid rounded mb-3" alt="Dron Topográfico">
+              </div>
+              <div class="col-md-6">
+                <h5>Características técnicas:</h5>
+                <ul>
+                  <li>Cámara de 42MP con sensor full frame</li>
+                  <li>LiDAR con 240,000 puntos/segundo</li>
+                  <li>Autonomía de vuelo: 45 minutos</li>
+                  <li>Precisión GNSS PPK: 1cm horizontal, 2cm vertical</li>
+                  <li>Resistencia al viento: 12m/s</li>
+                  <li>Peso: 3.5kg (incluyendo baterías)</li>
+                </ul>
+                <h5 class="mt-4">Aplicaciones:</h5>
+                <ul>
+                  <li>Fotogrametría para ortomosaicos</li>
+                  <li>Modelos digitales de terreno</li>
+                  <li>Monitoreo de avance de obra</li>
+                  <li>Levantamientos de grandes áreas</li>
+                  <li>Inspecciones en zonas de difícil acceso</li>
+                </ul>
+              </div>
+            </div>
+          `;
+          break;
+      }
+      
+      modalTitle.textContent = title;
+      modalBody.innerHTML = content;
+      techModal.show();
+    }
+    
+    // Animación de elementos al hacer scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
+      const fadeInObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      fadeElements.forEach(element => {
+        element.style.opacity = 0;
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        fadeInObserver.observe(element);
+      });
+    });
+  </script>
+</body>
+</html>
