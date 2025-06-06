@@ -1,17 +1,16 @@
-// Navbar scroll effect
-const navbarScrollEffect = () => {
+document.addEventListener('DOMContentLoaded', function() {
+  // Navbar scroll effect
   const navbar = document.querySelector('.navbar');
-  window.addEventListener('scroll', () => {
+  
+  window.addEventListener('scroll', function() {
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
     }
   });
-};
 
-// Smooth scrolling for anchor links
-const smoothScroll = () => {
+  // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
@@ -21,159 +20,77 @@ const smoothScroll = () => {
       
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
+        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+        const targetPosition = targetElement.offsetTop - navbarHeight;
+        
         window.scrollTo({
-          top: targetElement.offsetTop - 70,
+          top: targetPosition,
           behavior: 'smooth'
         });
         
         // Cerrar el menú móvil si está abierto
         const navbarCollapse = document.querySelector('.navbar-collapse');
         if (navbarCollapse.classList.contains('show')) {
-          navbarCollapse.classList.remove('show');
+          const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+            toggle: false
+          });
+          bsCollapse.hide();
         }
       }
     });
   });
-};
 
-// Activar elemento activo en navbar al hacer scroll
-const activeNavLink = () => {
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('.nav-link');
-  
-  window.addEventListener('scroll', () => {
-    let current = '';
-    
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      
-      if (window.scrollY >= sectionTop - 100) {
-        current = section.getAttribute('id');
+  // Form validation
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(event) {
+      if (!this.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
       }
+      
+      this.classList.add('was-validated');
+    }, false);
+  }
+
+  // Portfolio item hover effect for touch devices
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+  portfolioItems.forEach(item => {
+    item.addEventListener('touchstart', function() {
+      this.classList.add('hover');
     });
     
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
+    item.addEventListener('touchend', function() {
+      this.classList.remove('hover');
     });
   });
-};
 
-// Animaciones al hacer scroll
-const scrollAnimations = () => {
-  const animateOnScroll = (elements, animation) => {
-    elements.forEach(element => {
-      const elementPosition = element.getBoundingClientRect().top;
-      const screenPosition = window.innerHeight / 1.3;
-      
-      if (elementPosition < screenPosition) {
-        element.classList.add(animation);
-      }
-    });
-  };
-  
-  const animatedElements = document.querySelectorAll('.fade-in');
-  window.addEventListener('scroll', () => {
-    animateOnScroll(animatedElements, 'fade-in');
-  });
-  
-  // Ejecutar una vez al cargar la página
-  animateOnScroll(animatedElements, 'fade-in');
-};
-
-// Galería de proyectos interactiva
-const initProjectGallery = () => {
-  const projectCards = document.querySelectorAll('.project-card');
-  
-  projectCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      card.querySelector('.overlay').style.opacity = '1';
-    });
-    
-    card.addEventListener('mouseleave', () => {
-      card.querySelector('.overlay').style.opacity = '0';
-    });
-    
-    // Para dispositivos táctiles
-    card.addEventListener('click', () => {
-      card.querySelector('.overlay').style.opacity = 
-        card.querySelector('.overlay').style.opacity === '1' ? '0' : '1';
-    });
-  });
-};
-
-// Formulario de contacto
-const contactForm = () => {
-  const form = document.getElementById('contact-form');
-  if (!form) return;
-  
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const formData = new FormData(form);
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalBtnText = submitBtn.textContent;
-    
-    try {
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Enviando...';
-      
-      // Aquí iría la lógica para enviar el formulario
-      // Por ejemplo, usando Fetch API
-      /*
-      const response = await fetch('tu-endpoint', {
-        method: 'POST',
-        body: formData
-      });
-      
-      if (!response.ok) throw new Error('Error en el envío');
-      */
-      
-      // Simulación de envío exitoso
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Mostrar mensaje de éxito
-      const successMsg = document.createElement('div');
-      successMsg.className = 'alert alert-success mt-3';
-      successMsg.textContent = 'Mensaje enviado con éxito. Nos pondremos en contacto contigo pronto.';
-      form.appendChild(successMsg);
-      
-      // Resetear formulario
-      form.reset();
-      
-      // Desplazarse al mensaje de éxito
-      setTimeout(() => {
-        successMsg.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-      
-    } catch (error) {
-      console.error('Error:', error);
-      const errorMsg = document.createElement('div');
-      errorMsg.className = 'alert alert-danger mt-3';
-      errorMsg.textContent = 'Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.';
-      form.appendChild(errorMsg);
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = originalBtnText;
-    }
-  });
-};
-
-// Inicializar todas las funciones
-document.addEventListener('DOMContentLoaded', () => {
-  navbarScrollEffect();
-  smoothScroll();
-  activeNavLink();
-  scrollAnimations();
-  initProjectGallery();
-  contactForm();
-  
-  // Inicializar tooltips de Bootstrap
+  // Initialize tooltips
   const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-  tooltipTriggerList.map(function (tooltipTriggerEl) {
+  tooltipTriggerList.map(function(tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl);
   });
+  // En tu archivo main.js
+function initMap() {
+  const exactLocation = { 
+    lat: 21.186935, 
+    lng: -102.885587 
+  };
+  
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 18,
+    center: exactLocation,
+    mapId: "YOUR_MAP_ID" // Opcional: para estilos personalizados
+  });
+
+  new google.maps.Marker({
+    position: exactLocation,
+    map: map,
+    title: "Akuun Arquitectos",
+    icon: "/imagenes/marker.png" // Personaliza tu marcador
+  });
+}
+
+// Carga la API de Maps (añade esto antes de </body>)
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap&language=es®ion=MX"></script>
 });
