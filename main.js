@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Navbar scroll effect
+  
   const navbar = document.querySelector('.navbar');
   
   window.addEventListener('scroll', function() {
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Smooth scrolling for anchor links
+  
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
           behavior: 'smooth'
         });
         
-        // Cerrar el menú móvil si está abierto
+        
         const navbarCollapse = document.querySelector('.navbar-collapse');
         if (navbarCollapse.classList.contains('show')) {
           const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Form validation
+  
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', function(event) {
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, false);
   }
 
-  // Portfolio item hover effect for touch devices
+  
   const portfolioItems = document.querySelectorAll('.portfolio-item');
   portfolioItems.forEach(item => {
     item.addEventListener('touchstart', function() {
@@ -65,12 +65,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Initialize tooltips
+ 
   const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   tooltipTriggerList.map(function(tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl);
   });
-  // En tu archivo main.js
+  
 function initMap() {
   const exactLocation = { 
     lat: 21.186935, 
@@ -80,17 +80,17 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 18,
     center: exactLocation,
-    mapId: "YOUR_MAP_ID" // Opcional: para estilos personalizados
+    mapId: "YOUR_MAP_ID" 
   });
 
   new google.maps.Marker({
     position: exactLocation,
     map: map,
     title: "Akuun Arquitectos",
-    icon: "/imagenes/marker.png" // Personaliza tu marcador
+    icon: "./imagenes/marker.png" 
   });
 }
 
-// Carga la API de Maps (añade esto antes de </body>)
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap&language=es®ion=MX"></script>
 });
