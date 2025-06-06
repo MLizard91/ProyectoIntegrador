@@ -16,7 +16,7 @@
             --transition-speed: 0.3s;
         }
         
-        /* Base Styles */
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: var(--text-color);
@@ -24,7 +24,7 @@
             scroll-behavior: smooth;
         }
         
-        /* Header Styles */
+       
         .hero-header {
             background-color: var(--primary-color);
             color: var(--text-light);
@@ -32,7 +32,7 @@
             margin-bottom: 2rem;
         }
         
-        /* Service Header */
+        
         .service-header {
             background-color: var(--secondary-color);
             padding: 3rem 0;
@@ -44,7 +44,7 @@
             border-bottom: 3px solid var(--accent-color);
         }
         
-        /* Card Styles */
+        
         .feature-card {
             height: 100%;
             transition: all var(--transition-speed) ease;
@@ -74,7 +74,7 @@
             transform: scale(1.2);
         }
         
-        /* Button Styles */
+        
         .btn-outline-primary {
             border-color: var(--accent-color);
             color: var(--accent-color);
@@ -87,7 +87,7 @@
             border-color: var(--accent-color);
         }
         
-        /* Footer Styles */
+        
         footer {
             background-color: var(--primary-color);
             color: var(--text-light);
@@ -105,14 +105,14 @@
             text-decoration: none;
         }
         
-        /* Back Link */
+        
         .back-link {
             margin-top: 3rem;
             padding: 0.75rem 1.5rem;
             font-weight: 500;
         }
         
-        /* Responsive Adjustments */
+       
         @media (max-width: 768px) {
             .service-header {
                 padding: 2rem 0;
@@ -123,7 +123,7 @@
             }
         }
         
-        /* Animation Classes */
+        
         .fade-in {
             animation: fadeIn 1s ease-in;
         }
@@ -133,7 +133,7 @@
             to { opacity: 1; }
         }
         
-        /* Navbar Enhancements */
+        
         .navbar {
             transition: all 0.3s ease;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -166,7 +166,7 @@
     </style>
 </head>
 <body>
-    <!-- Header/Navbar -->
+   
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand me-auto d-flex align-items-center" href="/index.html#inicio">
@@ -194,10 +194,10 @@
                             Servicios
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item fs-4" href="/diseño.html">Diseño Arquitectónico</a></li>
-                            <li><a class="dropdown-item fs-4" href="/compraventa.html">CompraVenta</a></li>
-                            <li><a class="dropdown-item fs-4" href="/renta.html">Renta de Maquinaria</a></li>
-                            <li><a class="dropdown-item fs-4" href="/topografia.html">Topografía</a></li>
+                            <li><a class="dropdown-item fs-4" href="diseño.html">Diseño Arquitectónico</a></li>
+                            <li><a class="dropdown-item fs-4" href="compraventa.html">CompraVenta</a></li>
+                            <li><a class="dropdown-item fs-4" href="renta.html">Renta de Maquinaria</a></li>
+                            <li><a class="dropdown-item fs-4" href="topografia.html">Topografía</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -211,7 +211,7 @@
         </div>
     </nav>
     
-    <!-- Service Header -->
+    
     <div class="service-header">
         <div class="container text-center fade-in">
             <h2 class="display-4 fw-bold">Compraventa de propiedades</h2>
@@ -219,7 +219,7 @@
         </div>
     </div>
     
-    <!-- Main Content -->
+  
     <main class="container mb-5">
         <div class="row justify-content-center">
             <div class="col-lg-10">
@@ -261,13 +261,13 @@
                     </div>
                 </div>
                 
-                <!-- Additional Info Section (hidden by default) -->
+                
                 <div id="additional-info" class="mt-5 p-4 rounded-3" style="display: none; background-color: var(--secondary-color);">
                     <button class="btn btn-close float-end" onclick="hideAdditionalInfo()"></button>
                     <div id="info-content"></div>
                 </div>
                 
-                <!-- Contact Form -->
+                
                 <div class="row mt-5 fade-in">
                     <div class="col-lg-8 mx-auto">
                         <div class="card shadow-sm">
@@ -317,7 +317,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
+    
     <footer class="bg-dark text-white py-4">
         <div class="container">
             <div class="row">
@@ -359,12 +359,12 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS Bundle with Popper -->
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Custom JavaScript -->
+    
     <script>
-        // Navbar scroll effect
+        
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
@@ -374,7 +374,7 @@
             }
         });
         
-        // Show more info function
+        /
         function showMoreInfo(type) {
             const infoSection = document.getElementById('additional-info');
             const infoContent = document.getElementById('info-content');
@@ -435,7 +435,7 @@
             infoContent.innerHTML = content;
             infoSection.style.display = 'block';
             
-            // Scroll to the additional info section
+            
             infoSection.scrollIntoView({ behavior: 'smooth' });
         }
         
@@ -443,53 +443,26 @@
             document.getElementById('additional-info').style.display = 'none';
         }
         
-        // Form submission handler
+        
         function submitForm(event) {
             event.preventDefault();
             
-            // Get form values
+           
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
             const service = document.getElementById('service').value;
             const message = document.getElementById('message').value;
             
-            // Here you would typically send the data to a server
-            // For this example, we'll just show an alert
+            
             alert(`Gracias ${name} por tu consulta sobre ${service}. Nos pondremos en contacto contigo pronto.`);
             
-            // Reset the form
+            
             document.getElementById('contactForm').reset();
             
-            // You could add AJAX here to actually submit the form to a server
-            // Example:
-            /*
-            fetch('/submit-form', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    service: service,
-                    message: message
-                }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
-                document.getElementById('contactForm').reset();
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert('Hubo un error al enviar tu mensaje. Por favor inténtalo de nuevo más tarde.');
-            });
-            */
+           
         }
         
-        // Animation on scroll
         document.addEventListener('DOMContentLoaded', function() {
             const fadeElements = document.querySelectorAll('.fade-in');
             
