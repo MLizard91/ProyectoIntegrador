@@ -479,6 +479,80 @@
                 element.style.transition = 'opacity 0.6s ease';
                 observer.observe(element);
             });
+        
+            document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('compraventaForm');
+            const resultados = document.querySelector('.resultados');
+            const enviarBtn = form.querySelector('button[type="submit"]');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                resultados.style.display = 'block';
+                
+                
+                const nombre = document.getElementById('nombre');
+                if (nombre.value.length <= 5) {
+                resultados.innerHTML = "Debes escribir un nombre con al menos 6 caracteres";
+                resultados.className = 'resultados error';
+                nombre.focus();
+                return false;
+                }
+                
+                const regexNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+                if (!regexNombre.test(nombre.value)) {
+                resultados.innerHTML = "El nombre no debe contener números o caracteres especiales";
+                resultados.className = 'resultados error';
+                nombre.focus();
+                return false;
+                }
+                
+                
+                const correo = document.getElementById('correo');
+                var s = correo.value;
+                var filtro = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                if (!filtro.test(s)) {
+                resultados.innerHTML = 'Introduzca un email válido';
+                resultados.className = 'resultados error';
+                correo.focus();
+                return false;
+                }
+                
+                
+                const telefono = document.getElementById('telefono');
+                var t = telefono.value;
+                var er_telefono = /^([0-9]{10})+$/;
+                if (!er_telefono.test(t)) {
+                resultados.innerHTML = "Campo teléfono no válido. Debe tener 10 dígitos.";
+                resultados.className = 'resultados error';
+                telefono.focus();
+                return false;
+                }
+                
+                
+                const servicio = document.getElementById('servicio');
+                if (servicio.selectedIndex === 0) {
+                resultados.innerHTML = "Debe seleccionar un servicio de interés";
+                resultados.className = 'resultados error';
+                servicio.focus();
+                return false;
+                }
+                
+               
+                resultados.className = 'resultados verde';
+                resultados.innerHTML = "Muchas gracias por enviar el formulario";
+                
+                
+                enviarBtn.disabled = true;
+                enviarBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
+                
+                
+                setTimeout(function() {
+                form.submit();
+                }, 2000);
+                
+                return true;
+            });
+            });
         });
     </script>
 </body>
